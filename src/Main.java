@@ -3,6 +3,8 @@ import gep_dc.GPOperatorAdd;
 import gep_dc.GPOperatorMinus;
 import gep_dc.GPOperatorMul;
 import gep_dc.GPTerminalCste;
+import gep_dc.GepExpressionTree;
+import gep_dc.GepTreeMaker;
 
 import java.util.ArrayList;
 
@@ -43,12 +45,14 @@ public class Main {
 		expression.add(five);
 		expression.add(x2);
 		expression.add(six);
-		expression.add(x3);
+		/*expression.add(x3);
 		expression.add(x1);
 		expression.add(three);
-		expression.add(two);
-	
+		expression.add(two);*/
 		
+		GepExpressionTree tree = GepTreeMaker.makeTree(expression);
+		//System.out.println(tree.eval());
+		System.out.println(tree.toString());
 		
 	}
 

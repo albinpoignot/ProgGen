@@ -1,6 +1,6 @@
 package gep_dc;
 
-public abstract class GPTerminal extends java.lang.Object implements GPObject{
+public abstract class GPTerminal extends java.lang.Object implements GPObject {
 	
 	public abstract double eval();
 	

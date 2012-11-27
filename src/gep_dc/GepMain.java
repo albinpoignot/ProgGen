@@ -6,7 +6,7 @@ public class GepMain {
 	 * @param args
 	 */
 	/*public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 		System.out.println("GEP_DC: Gene Expression Programming for Dielectric Constant symbolic regression");
 		
 		//creation des contenus de l'arbre
