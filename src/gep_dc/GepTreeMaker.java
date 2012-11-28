@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 public class GepTreeMaker {
 
+	/**
+	 * Generate the tree from the expression given in parameters
+	 * @param exp the expression you want to convert into a tree
+	 * @return the tree
+	 */
 	public static GepExpressionTree makeTree(ArrayList<GPObject> exp) {
 		
 		// Lecture de la racine
@@ -25,8 +30,6 @@ public class GepTreeMaker {
 		// Tant qu'il y en a quelque chose dans FIFO
 		while(fifo.size() != 0) {
 			
-			System.out.println("FIFO > 0");
-			
 			// Si le prochain élément à traiter est un opérateur
 			if(exp.get(j).isOperator()) {
 				
@@ -44,14 +47,9 @@ public class GepTreeMaker {
 					
 					obj = fifo.get(0);
 					
-					System.out.println("\t Is binary op : " + obj.toString());
-					
 					// On ajoute les deux enfants à l'arbre
 					tree.add(obj, child1);
 					tree.add(obj, child2);
-					
-					System.out.println("\t Added : " + child1);
-					System.out.println("\t Added : " + child2);
 					
 					fifo.remove(0);
 					
