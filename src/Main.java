@@ -51,8 +51,8 @@ public class Main {
 		expression.add(two);*/
 		
 		GepExpressionTree tree = GepTreeMaker.makeTree(expression);
-		//System.out.println(tree.eval());
-		System.out.println(tree.toString());
+		System.out.println(tree.eval());
+		//System.out.println(tree.toString());
 		
 	}
 
