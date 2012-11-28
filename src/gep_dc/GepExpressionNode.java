@@ -52,7 +52,8 @@ public class GepExpressionNode implements MutableTreeNode {
 						((GepExpressionNode)(this.getChildAt(0))).eval(),
 								((GepExpressionNode)(this.getChildAt(1))).eval());
 			} else { // cas non binary
-				return 0;
+				return ((GPUnaryOperator)userObject).eval(
+						((GepExpressionNode)(this.getChildAt(0))).eval());
 			}
 		} else { // cas non terminal, non operator
 			return 0;

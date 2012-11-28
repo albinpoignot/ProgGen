@@ -1,12 +1,11 @@
-import gep_dc.GPObject;
 import gep_dc.GPOperatorAdd;
-import gep_dc.GPOperatorMinus;
 import gep_dc.GPOperatorMul;
+import gep_dc.GPOperatorNeg;
+import gep_dc.GPOperatorSub;
 import gep_dc.GPTerminalCste;
 import gep_dc.GepExpressionTree;
+import gep_dc.GepKExpression;
 import gep_dc.GepTreeMaker;
-
-import java.util.ArrayList;
 
 
 
@@ -17,12 +16,14 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
-		ArrayList<GPObject> expression = new ArrayList<GPObject>();
+		//ArrayList<GPObject> expression = new ArrayList<GPObject>();
 		
 		// Operators
 		GPOperatorAdd addOp = new GPOperatorAdd();
-		GPOperatorMinus minusOp = new GPOperatorMinus();
+		GPOperatorSub subOp = new GPOperatorSub();
 		GPOperatorMul mulOp = new GPOperatorMul();
+		
+		GPOperatorNeg neg = new GPOperatorNeg();
 		
 		// Constantes
 		GPTerminalCste two = new GPTerminalCste(2f);
@@ -35,24 +36,28 @@ public class Main {
 		GPTerminalCste x2 = new GPTerminalCste(20f);
 		GPTerminalCste x3 = new GPTerminalCste(30f);
 		
+		GepKExpression expr = new GepKExpression(15);
+		
 		// Expression
-		expression.add(addOp);
-		expression.add(mulOp);
-		expression.add(minusOp);
-		expression.add(three);
-		expression.add(x1);
-		expression.add(mulOp);
-		expression.add(five);
-		expression.add(x2);
-		expression.add(six);
+		expr.add(addOp);
+		expr.add(mulOp);
+		expr.add(subOp);
+		expr.add(neg);
+		expr.add(x1);
+		expr.add(mulOp);
+		expr.add(five);
+		expr.add(three);
+		expr.add(x2);
+		expr.add(six);
 		/*expression.add(x3);
 		expression.add(x1);
 		expression.add(three);
 		expression.add(two);*/
 		
-		GepExpressionTree tree = GepTreeMaker.makeTree(expression);
+		GepExpressionTree tree = expr.getExpressionTree();
 		System.out.println(tree.eval());
-		//System.out.println(tree.toString());
+		System.out.println(tree.toString());
+		System.out.println(expr.toString());
 		
 	}
 

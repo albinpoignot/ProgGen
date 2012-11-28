@@ -1,6 +1,6 @@
 package gep_dc;
 
-public class GPOperatorMinus extends GPBinaryOperator {
+public class GPOperatorSub extends GPBinaryOperator {
 
 	public String toString() {
 		return "-";
