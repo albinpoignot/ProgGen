@@ -14,7 +14,7 @@ public class Main {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		
 		//ArrayList<GPObject> expression = new ArrayList<GPObject>();
 		
@@ -49,16 +49,13 @@ public class Main {
 		expr.add(three);
 		expr.add(x2);
 		expr.add(six);
-		/*expression.add(x3);
-		expression.add(x1);
-		expression.add(three);
-		expression.add(two);*/
+
 		
 		GepExpressionTree tree = expr.getExpressionTree();
 		System.out.println(tree.eval());
 		System.out.println(tree.toString());
 		System.out.println(expr.toString());
 		
-	}
+	}*/
 
 }

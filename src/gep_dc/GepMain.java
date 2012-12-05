@@ -10,7 +10,11 @@ public class GepMain {
 	public static GPOperator[] operators = {new GPOperatorAdd(), new GPOperatorDiv(), new GPOperatorExp(), new GPOperatorLog(), 
 		new GPOperatorMul(), new GPOperatorNeg(), new GPOperatorSub()};
 	
-	public static ArrayList<GPTerminalVar> vars; 
+	public static GPTerminalCste[] cste = {new GPTerminalCste(0.0), new GPTerminalCste(1.0), new GPTerminalCste(2.0), 
+		new GPTerminalCste(3.0), new GPTerminalCste(4.0), new GPTerminalCste(5.0), new GPTerminalCste(6.0), new GPTerminalCste(7.0), 
+		new GPTerminalCste(8.0), new GPTerminalCste(9.0), new GPTerminalCste(10.0)};
+	
+	public static ArrayList<GPTerminalVar> vars;
 	
 	/**
 	 * @param args
@@ -73,29 +77,31 @@ public class GepMain {
 	 * Renvoie aléatoirement un terminal : Soit une constante soit une variable
 	 * @return un GPTerminal
 	 */
-	private static GPTerminal randomTerm() {
-
-		// TODO Equilibrer les proba des vars et des cste 
+	private static GPTerminal randomTerm() { 
+		
+		int nbConst = 10;
+		int nbVars = vars.size();
+		int nbElem = nbConst + nbVars;
 		
 		Random r = new Random();
-		int rand=r.nextInt(2);
+		int rand=r.nextInt(nbElem);
 		
-		if(rand == 1) {
+		if(rand < nbElem / 2) {
 			Random r1 = new Random();
-			int rand1=r1.nextInt(11);
+			int rand1=r1.nextInt(nbConst);
 			
 			return new GPTerminalCste(rand1);
 		} else {
 			Random r2 = new Random();
-			int rand2=r2.nextInt(data.getNbVars());
+			int rand2=r2.nextInt(nbVars);
 			
-			return new GPTerminalVar(data, rand2, data.getVarNames().get(rand2));
+			return vars.get(rand2);
 		}
 		
 	}
 	
 	/**
-	 * Génère une kEpression
+	 * Génère une kExpression
 	 */
 	private static GepKExpression randomInit(int size) {
 		
@@ -126,32 +132,9 @@ public class GepMain {
 	private static GPOperator randomOp() {
 
 		Random r = new Random();
-		int rand=r.nextInt(7);
+		int rand=r.nextInt(operators.length);
 		
-		switch(rand) {
-			
-			case 0:
-				return new GPOperatorAdd();
-				
-			case 1:
-				return new GPOperatorDiv();
-				
-			case 2:
-				return new GPOperatorExp();
-				
-			case 3:
-				return new GPOperatorLog();
-				
-			case 4:
-				return new GPOperatorMul();
-				
-			case 5:
-				return new GPOperatorNeg();
-				
-			default:
-				return new GPOperatorSub();
-				
-		}
+		return operators[rand];
 		
 	}
 
