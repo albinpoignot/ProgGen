@@ -8,22 +8,33 @@ public class GepData {
 	private double data[][]; 
 	private ArrayList<String> substance_list;
 	private double DC[];
+	private ArrayList<String> varNames;
 
 	public GepData(String FileName) {
-		// TODO Auto-generated constructor stub
+		
 		String tmp;
 		substance_list = new ArrayList<String>();
 		try {
 	        BufferedReader br = new BufferedReader(new FileReader(FileName));
+
 	        //lire la premiere ligne
-	        br.readLine();
+	        tmp = br.readLine();
+	        String[] split = tmp.split(";");
+	        varNames = new ArrayList<String>();
+	        
+	        // Stockage des noms de variables
+	        for(int i=2; i<split.length; i++) {
+	        	varNames.add(split[i]);
+	        }
+
+	        
 	        //lire toute les ligne pour enregistrer les nom des substances 
 	        while ( (tmp=br.readLine())!=null ) {
 				String[] splitted = tmp.split(";");
 				substance_list.add(splitted[0]);
 			}
 	        br.close();
-	        //ensuite lire les valeurs de DC et des autres donnes
+	        //ensuite lire les valeurs de DC et des autres données
 	        br = new BufferedReader(new FileReader(FileName));
 	        //lire la premiere ligne
 	        br.readLine();
@@ -64,6 +75,22 @@ public class GepData {
 			S += "\n";
 		}
 		return S;
+	}
+	
+	public ArrayList<String> getVarNames() {
+		return varNames;
+	}
+	
+	public int getNbSubstances() {
+		return data.length;
+	}
+	
+	public int getNbVars() {
+		return varNames.size();
+	}
+	
+	public ArrayList<String> getSubstanceList() {
+		return substance_list;
 	}
 
 }

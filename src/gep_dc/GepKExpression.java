@@ -11,69 +11,6 @@ public class GepKExpression {
 	private int tail;
 	private int size;
 	
-	public void randomInit() {
-		
-		for(int i = 0; i < head; i++) {
-			Random r = new Random();
-			int rand=r.nextInt(2);
-			
-			if(rand == 1) {
-				kExpression.add(randomOp());
-			} else {
-				kExpression.add(randomTerm());
-			}
-			
-		}
-		
-	}
-	
-	private GPOperator randomOp() {
-
-		Random r = new Random();
-		int rand=r.nextInt(7);
-		
-		switch(rand) {
-			
-			case 0:
-				return new GPOperatorAdd();
-				
-			case 1:
-				return new GPOperatorDiv();
-				
-			case 2:
-				return new GPOperatorExp();
-				
-			case 3:
-				return new GPOperatorLog();
-				
-			case 4:
-				return new GPOperatorMul();
-				
-			case 5:
-				return new GPOperatorNeg();
-				
-			default:
-				return new GPOperatorSub();
-				
-		}
-		
-	}
-	
-	private GPTerminal randomTerm() {
-
-		Random r = new Random();
-		int rand=r.nextInt(2);
-		
-		if(rand == 1) {
-			// TODO provide value
-			return new GPTerminalCste(value);
-		} else {
-			// TODO provide data, column and name
-			return new GPTerminalVar(data, column, name);
-		}
-		
-	}
-	
 	public void add(GPObject element) {
 		kExpression.add(element);
 	}
@@ -133,5 +70,9 @@ public class GepKExpression {
 			s += "["+element.toString()+"]";
 		}
 		return s;	
+	}
+	
+	public int getHead() {
+		return this.head;
 	}
 }

@@ -59,7 +59,6 @@ public class GepTreeMaker {
 					
 				} else {
 					
-					// TODO Not a binary operator
 					// On crée deux enfants
 					GepExpressionNode child1 = new GepExpressionNode(exp.get(i+1));
 					
