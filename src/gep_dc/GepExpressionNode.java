@@ -60,6 +60,29 @@ public class GepExpressionNode implements MutableTreeNode {
 		}
 			
 	}
+	
+	public double eval(int substance) {
+		if ( userObject.isTerminal() ) {
+			if(((GPTerminal)userObject).isVariable()) {
+				return ((GPTerminalVar)userObject).eval(substance);
+			} else {
+				return userObject.eval();
+			}
+		}
+		if ( userObject.isOperator() ) {
+			if ( ((GPOperator)userObject).isBinaryOperator() ) {
+				return ((GPBinaryOperator)userObject).eval(
+						((GepExpressionNode)(this.getChildAt(0))).eval(),
+								((GepExpressionNode)(this.getChildAt(1))).eval());
+			} else { // cas non binary
+				return ((GPUnaryOperator)userObject).eval(
+						((GepExpressionNode)(this.getChildAt(0))).eval());
+			}
+		} else { // cas non terminal, non operator
+			return 0;
+		}
+			
+	}
 
 	public void remove(MutableTreeNode node) {
 		if (children.contains(node)) {

@@ -29,4 +29,8 @@ public class GPTerminalVar extends GPTerminal {
 	public boolean isOperator()  {
 		return false;
 	}
+
+	public boolean isVariable() {
+		return true;
+	}
 }

@@ -19,4 +19,5 @@ public abstract class GPBinaryOperator  extends java.lang.Object implements GPOp
 	public boolean isTerminal() {
 		return false;
 	}
+
 }

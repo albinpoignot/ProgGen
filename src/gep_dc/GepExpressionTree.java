@@ -11,6 +11,10 @@ public class GepExpressionTree {
 		return root_node.eval();
 	}
 	
+	public double eval(int substance) {
+		return root_node.eval(substance);
+	}
+	
 	public void add(GepExpressionNode parent, GepExpressionNode child) {
 		parent.add(child);
 		child.setParent(parent);

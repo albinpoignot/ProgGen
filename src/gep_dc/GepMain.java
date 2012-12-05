@@ -53,8 +53,10 @@ public class GepMain {
 		
 		initVars();
 		
-		for (GPTerminalVar var : vars) {
-			System.out.println(var.toString());
+		for(int i=0; i<15; i++) {
+			GepKExpression expr = randomInit(14);
+			GepExpressionTree tree = expr.getExpressionTree();
+			System.out.println(tree.eval());
 		}
 		
 	}
@@ -117,8 +119,6 @@ public class GepMain {
 		for(int i = 0; i < tail; i++) {
 			expr.add(randomTerm());			
 		}
-		
-		// TODO remplir tail
 		
 		return expr;
 		
