@@ -107,20 +107,15 @@ public class GepMain {
 		
 		GepKExpression expr = new GepKExpression(size);
 		
-		// TODO Forcer des opérateurs dans la tête
+		int tail = expr.getSize() -(expr.getHead());
 		
-		// TODO Générer les opérateurs contenus dans une liste
-		
+					
 		for(int i = 0; i < expr.getHead(); i++) {
-			Random r = new Random();
-			int rand=r.nextInt(2);
-			
-			if(rand == 1) {
-				expr.add(randomOp());
-			} else {
-				expr.add(randomTerm());
-			}
-			
+			expr.add(randomOp());
+		}
+		
+		for(int i = 0; i < tail; i++) {
+			expr.add(randomTerm());			
 		}
 		
 		// TODO remplir tail
@@ -137,5 +132,7 @@ public class GepMain {
 		return operators[rand];
 		
 	}
+	
+	
 
 }

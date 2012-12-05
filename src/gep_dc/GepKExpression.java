@@ -75,4 +75,8 @@ public class GepKExpression {
 	public int getHead() {
 		return this.head;
 	}
+	
+	public int getSize(){
+		return this.size;
+	}
 }
