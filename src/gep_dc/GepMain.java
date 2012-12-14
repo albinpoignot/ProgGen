@@ -111,6 +111,20 @@ public class GepMain {
 		
 	}
 	
+	//Cette fonction va couper l'expression 1 aléatoirement et remplir ce qui a été coupé avec l'expression 2
+	//à partir de l'index où on a coupé l'expression 1.
+	private static GepKExpression GepCrossExpression(GepKExpression expr1, GepKExpression expr2){
+			
+		Random rand1 = new Random();
+		int myRand1 = rand1.nextInt(expr1.getSize());
+		expr1.rm(myRand1);
+					
+		for(int i = myRand1; i < (expr2.getSize()-myRand1); i++){
+			expr1.add(expr2.getObject(i));
+		}
+			
+			return expr1;
+			
+		}
 	
-
 }
