@@ -2,6 +2,8 @@ package gep_dc;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 public class GepPopulation {
 
@@ -49,6 +51,25 @@ public class GepPopulation {
 			for (GepKExpression elem : fitness.keySet()) {
 				System.out.println("\tFitness : " + fitness.get(elem));
 			}
+		}
+	}
+	
+	/**
+	 * Remove all expression in both ArrayList which have fitness NaN or Infinity
+	 */
+	public void clear() {
+		
+		Set<GepKExpression> keySet = fitness.keySet();
+		
+		Iterator itr = keySet.iterator(); 
+		while(itr.hasNext()) {
+
+		    GepKExpression element = (GepKExpression) itr.next(); 
+		    if(fitness.get(element).isNaN() || fitness.get(element).isInfinite()) {
+		    	itr.remove();
+		    	population.remove(element);
+		    }
+
 		}
 	}
 	

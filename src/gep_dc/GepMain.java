@@ -36,7 +36,8 @@ public class GepMain {
 		GepPopulation pop = new GepPopulation(expr);
 		pop.evaluate();
 		pop.display();
-		
+		pop.clear();
+		pop.display();
 	}
 	
 	/**
