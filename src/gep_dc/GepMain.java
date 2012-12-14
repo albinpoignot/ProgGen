@@ -19,6 +19,8 @@ public class GepMain {
 	public static boolean DEBUG = false;
 	public static boolean DEBUG_SHORT = false;
 	
+	private static Random randomer = new Random();
+	
 	/**
 	 * @param args
 	 */
@@ -64,8 +66,8 @@ public class GepMain {
 		int nbVars = vars.size();
 		int nbElem = nbConst + nbVars;
 		
-		Random r = new Random();
-		int rand=r.nextInt(nbElem);
+		
+		int rand=randomer.nextInt(nbElem);
 		
 		if(rand < nbElem / 2) {
 			Random r1 = new Random();
@@ -105,8 +107,7 @@ public class GepMain {
 	
 	private static GPOperator randomOp() {
 
-		Random r = new Random();
-		int rand=r.nextInt(operators.length);
+		int rand=randomer.nextInt(operators.length);
 		
 		return operators[rand];
 		
@@ -116,8 +117,7 @@ public class GepMain {
 	//à partir de l'index où on a coupé l'expression 1.
 	private static GepKExpression GepCrossExpression(GepKExpression expr1, GepKExpression expr2){
 			
-		Random rand1 = new Random();
-		int myRand1 = rand1.nextInt(expr1.getSize());
+		int myRand1 = randomer.nextInt(expr1.getSize());
 		expr1.rm(myRand1);
 					
 		for(int i = myRand1; i < (expr2.getSize()-myRand1); i++){
