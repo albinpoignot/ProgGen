@@ -23,6 +23,12 @@ public class GepKExpression {
 		this.tail= size-this.head;	
 	}
 	
+	//Permet de supprimer les objets de la kExpression à partir de l'indice i
+	public void rm(int index){
+		for(int i = index; i < kExpression.size(); i++)
+		kExpression.remove(i);
+	}
+	
 	public GepExpressionTree getExpressionTree() {
 		//la reserve est une liste FIFO qui contient les noeud de l'arbre à remplir
 		ArrayList<GepExpressionNode> reserve =new ArrayList<GepExpressionNode>();
@@ -78,5 +84,10 @@ public class GepKExpression {
 	
 	public int getSize(){
 		return this.size;
+	}
+	
+	//Renvoi l'objet i de l'expression
+	public GPObject getObject(int i){
+		return kExpression.get(i);
 	}
 }
