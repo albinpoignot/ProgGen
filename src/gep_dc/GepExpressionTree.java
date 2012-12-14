@@ -7,9 +7,9 @@ public class GepExpressionTree {
 		root_node = root;
 	}
 	
-	public double eval() {
+	/*public double eval() {
 		return root_node.eval();
-	}
+	}*/
 	
 	public double eval(int substance) {
 		return root_node.eval(substance);

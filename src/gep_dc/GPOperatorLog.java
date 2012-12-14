@@ -10,7 +10,9 @@ public class GPOperatorLog extends GPUnaryOperator implements GPOperator {
 		if(x > 0) {
 			return Math.log(x);
 		} else {
-			System.out.println("Error: log -> x < 0");
+			if(GepMain.DEBUG) {
+				System.out.println("Error: log -> x < 0");
+			}
 			return 0;
 		}
 	}

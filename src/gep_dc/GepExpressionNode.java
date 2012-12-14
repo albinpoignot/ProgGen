@@ -42,7 +42,7 @@ public class GepExpressionNode implements MutableTreeNode {
 		}
 	}
 	
-	public double eval() {
+	/*public double eval() {
 		if ( userObject.isTerminal() ) {
 			return userObject.eval();
 		}
@@ -59,7 +59,7 @@ public class GepExpressionNode implements MutableTreeNode {
 			return 0;
 		}
 			
-	}
+	}*/
 	
 	public double eval(int substance) {
 		if ( userObject.isTerminal() ) {
@@ -68,15 +68,14 @@ public class GepExpressionNode implements MutableTreeNode {
 			} else {
 				return userObject.eval();
 			}
-		}
-		if ( userObject.isOperator() ) {
+		} else if ( userObject.isOperator() ) {
 			if ( ((GPOperator)userObject).isBinaryOperator() ) {
 				return ((GPBinaryOperator)userObject).eval(
-						((GepExpressionNode)(this.getChildAt(0))).eval(),
-								((GepExpressionNode)(this.getChildAt(1))).eval());
+						((GepExpressionNode)(this.getChildAt(0))).eval(substance),
+								((GepExpressionNode)(this.getChildAt(1))).eval(substance));
 			} else { // cas non binary
 				return ((GPUnaryOperator)userObject).eval(
-						((GepExpressionNode)(this.getChildAt(0))).eval());
+						((GepExpressionNode)(this.getChildAt(0))).eval(substance));
 			}
 		} else { // cas non terminal, non operator
 			return 0;
