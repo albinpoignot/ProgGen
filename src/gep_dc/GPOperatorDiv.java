@@ -10,7 +10,9 @@ public class GPOperatorDiv extends GPBinaryOperator implements GPOperator {
 		if(y == 0) {
 			return x/y;
 		} else {
-			System.out.println("Error: div -> y = 0");
+			if(GepMain.DEBUG) {
+				System.out.println("Error: div -> y = 0");
+			}
 			return 0;
 		}
 	}

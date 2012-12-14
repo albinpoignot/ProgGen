@@ -22,4 +22,9 @@ public class GPTerminalCste extends GPTerminal {
 	public boolean isVariable() {
 		return false;
 	}
+
+	@Override
+	public boolean isTerminal() {
+		return true;
+	}
 }

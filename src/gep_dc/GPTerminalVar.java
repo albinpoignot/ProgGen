@@ -26,11 +26,18 @@ public class GPTerminalVar extends GPTerminal {
 		return "["+this.name+"="+String.valueOf(this.last_value)+"]";
 	}
 
+	@Override
 	public boolean isOperator()  {
 		return false;
 	}
 
+	@Override
 	public boolean isVariable() {
+		return true;
+	}
+
+	@Override
+	public boolean isTerminal() {
 		return true;
 	}
 }

@@ -9,7 +9,5 @@ public abstract class GPTerminal extends java.lang.Object implements GPObject {
 		return false;
 	}
 
-	public boolean isTerminal() {
-		return true;
-	}
+	public abstract boolean isTerminal();
 }
