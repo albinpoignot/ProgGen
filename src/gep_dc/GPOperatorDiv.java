@@ -7,13 +7,14 @@ public class GPOperatorDiv extends GPBinaryOperator implements GPOperator {
 	}
 	
 	public double eval(double x, double y) {
-		if(y == 0) {
+		if(y != 0.0f) {
 			return x/y;
 		} else {
 			if(GepMain.DEBUG) {
 				System.out.println("Error: div -> y = 0");
 			}
-			return 0;
+			//return 0.0f;
+			return Double.NaN;
 		}
 	}
 	
