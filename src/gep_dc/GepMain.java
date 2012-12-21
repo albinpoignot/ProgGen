@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
 public class GepMain {
 
 	public static GepData data = new GepData("data/DC_TC_PC_VC_ACEN_MW_DM_NBP.data.csv");
@@ -53,37 +60,57 @@ public class GepMain {
 		now = new Date();
 		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
 		
+		
+		
+		XYSeries series = new XYSeries("Fitness");
+		XYDataset xyDataset = new XYSeriesCollection(series);
+		Chart chart = new Chart("Gep Programming", "Fitnesses chart", xyDataset);
+		chart.pack();
+		chart.setVisible(true);
+		
+		Double x = 0.0;
+		
 		System.out.println("4. Evaluation of the initial population");
 		start = new Date();
 			pop.evaluate();
 		now = new Date();
+		series.add(x++, pop.getFitnessStorage().getFitnessMinimum());
 		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
 		
-		System.out.println("5. Displaying of the best fitness");
+		System.out.println("5. Displaying of the best initial fitness");
 		start = new Date();
 			pop.displayBest();
 		now = new Date();
 		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
 		
-		System.out.println("6. Crossing the expressions");
-		start = new Date();
-		GepPopulationUtils popUtils = new GepPopulationUtils(pop);
-		popUtils.cross(3000);
+		System.out.println("6. Launching...");
 		
-		pop = popUtils.getCrossedPopulation();
-		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
-		
-		System.out.println("7. Evaluate the new crossed population");
-		start = new Date();
-			pop.evaluate();
-		now = new Date();
-		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
-		
-		System.out.println("8. Displaying of the best part of the new crossed population");
-		start = new Date();
-			pop.displayBest();
-		now = new Date();
-		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
+		for(int i=0; i<30; i++) {
+			System.out.println("==========================================================");
+			System.out.println("\t6.1 Crossing the expressions");
+			start = new Date();
+			GepPopulationUtils popUtils = new GepPopulationUtils(pop);
+			popUtils.cross(3000);
+			
+			pop = popUtils.getCrossedPopulation();
+			now = new Date();
+			System.out.println("\t("+ ((double)(now.getTime() - start.getTime())/1000) +")");
+			
+			System.out.println("\t6.2 Evaluate the new crossed population");
+			start = new Date();
+				pop.evaluate();
+			now = new Date();
+			System.out.println("\t("+ ((double)(now.getTime() - start.getTime())/1000) +")");
+			
+			System.out.println("\t6.3 Displaying of the best part of the new crossed population");
+			start = new Date();
+				pop.displayBest();
+			now = new Date();
+			System.out.println("\t("+ ((double)(now.getTime() - start.getTime())/1000) +")");
+			
+			series.add(x++, pop.getFitnessStorage().getFitnessMinimum());
+			
+		}
 		
 	}
 	

@@ -17,7 +17,7 @@ public class GepPopulationUtils {
 	 */
 	public void cross(int size) {
 		
-		ArrayList<GepKExpression> list = new ArrayList<GepKExpression>();
+		ArrayList<GepKExpression> list = populationParents.getFitnessStorage().getExpressions();
 		
 		for(int i=0; i < size; i++) {
 			

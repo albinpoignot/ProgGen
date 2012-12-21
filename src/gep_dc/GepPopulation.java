@@ -83,9 +83,9 @@ public class GepPopulation {
 	}
 	
 	public void displayBest() {
-		System.out.println("=== Display best element ===");
-		System.out.println("\tExpression : " + finalFitnesses.getExpMinimum().toString());
-		System.out.println("\tFitness : " + finalFitnesses.getFitnessMinimum());
+		System.out.println("\t\t=== Display best element ===");
+		System.out.println("\t\tExpression : " + finalFitnesses.getExpMinimum().toString());
+		System.out.println("\t\tFitness : " + finalFitnesses.getFitnessMinimum());
 	}
 	
 	public FitnessStorage getFitnessStorage() {
