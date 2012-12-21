@@ -2,7 +2,6 @@ package gep_dc;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Random;
 
 public class GepKExpression {
 	
@@ -17,7 +16,6 @@ public class GepKExpression {
 	
 	public GepKExpression(int size) {
 		kExpression = new ArrayList<GPObject>();
-		//this.size = size;
 		//on choisit n=2, cas des operateurs binaires
 		this.head = (size-1)/2;
 		this.tail= (int) ((size-this.head)*1.50);

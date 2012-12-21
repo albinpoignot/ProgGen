@@ -12,8 +12,8 @@ public class GepPopulationUtils {
 	}
 	
 	/**
-	 * 
-	 * @param size Taille de la population générée voulue
+	 * Croise les individus de la population de parents
+	 * @param size Nombre d'enfants croisés voulus
 	 */
 	public void cross(int size) {
 		

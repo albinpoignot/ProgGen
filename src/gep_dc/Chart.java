@@ -1,6 +1,3 @@
-/**
- * 
- */
 package gep_dc;
 
 import java.awt.Color;
@@ -13,17 +10,13 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
 import org.jfree.data.xy.XYDataset;
 
-/**
- * 
- */
+
 public class Chart extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	public static XYDataset dataset;
+	public XYDataset dataset;
 
 	public Chart(String applicationTitle, String chartTitle, XYDataset dataset) {
         super(applicationTitle);

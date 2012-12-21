@@ -18,9 +18,19 @@ import java.util.Collections;
 public class FitnessStorage {
 
 	/**
+	 * Expression avec la fitness minimum
+	 */
+	private GepKExpression expMinimum;
+	
+	/**
 	 * Liste des exceptions
 	 */
 	private ArrayList<GepKExpression> expressions;
+	
+	/**
+	 * Fitness minimum
+	 */
+	private Double fitMinimum;
 	
 	/**
 	 * Liste des fitness
@@ -31,16 +41,6 @@ public class FitnessStorage {
 	 * Fitness maximum actuellement
 	 */
 	private Double maximum;
-	
-	/**
-	 * Expression avec la fitness minimum
-	 */
-	private GepKExpression expMinimum;
-	
-	/**
-	 * Fitness minimum
-	 */
-	private Double fitMinimum;
 	
 	/**
 	 * Taille maximum des listes
@@ -60,11 +60,48 @@ public class FitnessStorage {
 	}
 	
 	/**
-	 * Retourne la taille des listes
-	 * @return taille des listes
+	 * Display function
 	 */
-	public int size() {
-		return expressions.size();
+	public void display() {
+		System.out.println("=== FitnessStore ===");
+		System.out.println("Nb final element : " + expressions.size());
+		
+		if(GepMain.DEBUG_SHORT) {
+			int i = 0;
+			for (GepKExpression elem : expressions) {
+				System.out.println("\tExpression : " + elem.toString());
+				System.out.println("\t\tFitness : " + fitnesses.get(i));
+				++i;
+			}
+		} else {
+			for (Double fitness : fitnesses) {
+				System.out.println("\tFitness : " + fitness);
+			}
+		}
+	}
+	
+	/**
+	 * Retourne l'expression avec la fitness minimum
+	 * @return
+	 */
+	public GepKExpression getExpMinimum() {
+		return expMinimum;
+	}
+	
+	public ArrayList<GepKExpression> getExpressions() {
+		return expressions;
+	}
+	
+	public ArrayList<Double> getFitnesses() {
+		return fitnesses;
+	}
+	
+	/**
+	 * Retourne la fitness minimum
+	 * @return
+	 */
+	public Double getFitnessMinimum() {
+		return fitMinimum;
 	}
 	
 	/**
@@ -132,48 +169,11 @@ public class FitnessStorage {
 	}
 	
 	/**
-	 * Retourne la fitness minimum
-	 * @return
+	 * Retourne la taille des listes
+	 * @return taille des listes
 	 */
-	public Double getFitnessMinimum() {
-		return fitMinimum;
-	}
-	
-	/**
-	 * Retourne l'expression avec la fitness minimum
-	 * @return
-	 */
-	public GepKExpression getExpMinimum() {
-		return expMinimum;
-	}
-	
-	/**
-	 * Display function
-	 */
-	public void display() {
-		System.out.println("=== FitnessStore ===");
-		System.out.println("Nb final element : " + expressions.size());
-		
-		if(GepMain.DEBUG_SHORT) {
-			int i = 0;
-			for (GepKExpression elem : expressions) {
-				System.out.println("\tExpression : " + elem.toString());
-				System.out.println("\t\tFitness : " + fitnesses.get(i));
-				++i;
-			}
-		} else {
-			for (Double fitness : fitnesses) {
-				System.out.println("\tFitness : " + fitness);
-			}
-		}
-	}
-	
-	public ArrayList<GepKExpression> getExpressions() {
-		return expressions;
-	}
-	
-	public ArrayList<Double> getFitnesses() {
-		return fitnesses;
+	public int size() {
+		return expressions.size();
 	}
 	
 }

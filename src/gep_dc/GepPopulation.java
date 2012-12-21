@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class GepPopulation {
 
 	private ArrayList<GepKExpression> population;
-	//private HashMap<GepKExpression, Double> fitness;
 	
 	private FitnessStorage finalFitnesses;
 	
@@ -15,7 +14,6 @@ public class GepPopulation {
 	 */
 	public GepPopulation(ArrayList<GepKExpression> expr) {
 		population = expr;
-		//fitness = new HashMap<GepKExpression, Double>();
 	}
 	
 	/**
@@ -47,9 +45,6 @@ public class GepPopulation {
 			// Calcul final de la fitness
 			Double fit = avgMinusDC / nbSubstances;
 			
-			// Stockage quoi qu'il arrive, pour debug
-			//fitness.put(elem, fit);
-			
 			// Ajout dans le stockage final si on est pas dans le cas de
 			// NaN ou de Infinity
 			if(!Double.isNaN(fit) && !Double.isInfinite(fit))
@@ -58,30 +53,18 @@ public class GepPopulation {
 		}
 	}
 	
-	public void permuter() {
-		
-	}
 	
 	/**
 	 * Display function
 	 */
 	public void display() {
 		System.out.println("=== Display everything ===");
-		/*System.out.println("Nb element evaluated : " + fitness.size());
-		if(GepMain.DEBUG_SHORT) {
-			for (GepKExpression elem : fitness.keySet()) {
-				System.out.println("\tExpression : " + elem.toString());
-				System.out.println("\t\tFitness : " + fitness.get(elem));
-			}
-		} else {
-			for (GepKExpression elem : fitness.keySet()) {
-				System.out.println("\tFitness : " + fitness.get(elem));
-			}
-		}*/
-		
 		finalFitnesses.display();
 	}
 	
+	/**
+	 * Display the best element
+	 */
 	public void displayBest() {
 		System.out.println("\t\t=== Display best element ===");
 		System.out.println("\t\tExpression : " + finalFitnesses.getExpMinimum().toString());

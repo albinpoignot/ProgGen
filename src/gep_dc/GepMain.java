@@ -4,30 +4,63 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 public class GepMain {
 
+	/**
+	 * Données à utiliser
+	 */
 	public static GepData data = new GepData("data/DC_TC_PC_VC_ACEN_MW_DM_NBP.data.csv");
 	
+	/**
+	 * Liste des opérateurs disponibles (instanciés)
+	 */
 	public static GPOperator[] operators = {new GPOperatorAdd(), new GPOperatorDiv(), new GPOperatorExp(), new GPOperatorLog(), 
 		new GPOperatorMul(), new GPOperatorNeg(), new GPOperatorSub()};
 	
+	/**
+	 * Liste des constante disponibles (instanciées)
+	 */
 	public static GPTerminalCste[] cste = {new GPTerminalCste(0.0), new GPTerminalCste(1.0), new GPTerminalCste(2.0), 
 		new GPTerminalCste(3.0), new GPTerminalCste(4.0), new GPTerminalCste(5.0), new GPTerminalCste(6.0), new GPTerminalCste(7.0), 
 		new GPTerminalCste(8.0), new GPTerminalCste(9.0), new GPTerminalCste(10.0)};
 	
+	/**
+	 * Liste des variables disponibles (instanciées)
+	 */
 	public static ArrayList<GPTerminalVar> vars;
 	
+	/**
+	 * Constante de Debug
+	 */
 	public static boolean DEBUG = false;
+	
+	/**
+	 * Constante de Debug 2
+	 */
 	public static boolean DEBUG_SHORT = false;
+	
+	/**
+	 * Taille des expressions
+	 */
 	public static int SIZE_OF_EXPRESSIONS = 30;
 	
+	/**
+	 * Nombre d'expressions générées au départ
+	 */
+	public static int NUMBER_OF_MEMBERS = 10000;
+	
+	/**
+	 * Nombre de population croisée qui seront calculées
+	 */
+	public static int NUMBER_OF_CROSS = 30;
+	
+	/**
+	 * Randomer général utilisé dans tout le projet
+	 */
 	public static Random randomer = new Random();
 	
 	/**
@@ -37,6 +70,9 @@ public class GepMain {
 
 		System.out.println("GEP_DC: Gene Expression Programming for Dielectric Constant symbolic regression");
 		
+		/*
+		 * Step 1 : Initialisation des variables 
+		 */
 		Date start = new Date();
 		
 		System.out.println("1. Initialization of variables");
@@ -44,24 +80,28 @@ public class GepMain {
 		Date now = new Date();
 		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
 		
+		/*
+		 * Step 2 : Initialisation des expressions aléatoires 
+		 */
 		System.out.println("2. Initialization of random expressions");
 		start = new Date();
 		ArrayList<GepKExpression> expr = new ArrayList<GepKExpression>();
-		for(int i=0; i<10000; i++) {
+		for(int i=0; i<NUMBER_OF_MEMBERS; i++) {
 			expr.add(randomInit(SIZE_OF_EXPRESSIONS));
 		}
 		now = new Date();
 		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
 		
-		
+		/*
+		 * Step 3 : Initialisation de la population et du Chart
+		 */
 		System.out.println("3. Initialization of the population");
 		start = new Date();
 			GepPopulation pop = new GepPopulation(expr);
 		now = new Date();
 		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
 		
-		
-		
+				
 		XYSeries series = new XYSeries("Fitness");
 		XYDataset xyDataset = new XYSeriesCollection(series);
 		Chart chart = new Chart("Gep Programming", "Fitnesses chart", xyDataset);
@@ -70,6 +110,9 @@ public class GepMain {
 		
 		Double x = 0.0;
 		
+		/*
+		 * Step 4 : Première évaluation de la population
+		 */
 		System.out.println("4. Evaluation of the initial population");
 		start = new Date();
 			pop.evaluate();
@@ -85,7 +128,10 @@ public class GepMain {
 		
 		System.out.println("6. Launching...");
 		
-		for(int i=0; i<30; i++) {
+		/*
+		 * Step 5 : Crossing et morphing
+		 */
+		for(int i=0; i<NUMBER_OF_CROSS; i++) {
 			System.out.println("==========================================================");
 			System.out.println("\t6.1 Crossing the expressions");
 			start = new Date();
@@ -174,6 +220,10 @@ public class GepMain {
 		
 	}
 	
+	/**
+	 * Renvoi un opérateur
+	 * @return renvoi un opérateur, aléatoire
+	 */
 	private static GPOperator randomOp() {
 
 		int rand=randomer.nextInt(operators.length);
@@ -181,20 +231,5 @@ public class GepMain {
 		return operators[rand];
 		
 	}
-	
-	//Cette fonction va couper l'expression 1 aléatoirement et remplir ce qui a été coupé avec l'expression 2
-	//à partir de l'index où on a coupé l'expression 1.
-	private static GepKExpression GepCrossExpression(GepKExpression expr1, GepKExpression expr2){
-			
-		int myRand1 = randomer.nextInt(expr1.getSize());
-		expr1.rm(myRand1);
-					
-		for(int i = myRand1; i < (expr2.getSize()-myRand1); i++){
-			expr1.add(expr2.getObject(i));
-		}
-			
-			return expr1;
-			
-		}
 	
 }
