@@ -19,8 +19,9 @@ public class GepMain {
 	
 	public static boolean DEBUG = false;
 	public static boolean DEBUG_SHORT = false;
+	public static int SIZE_OF_EXPRESSIONS = 30;
 	
-	private static Random randomer = new Random();
+	public static Random randomer = new Random();
 	
 	/**
 	 * @param args
@@ -40,7 +41,7 @@ public class GepMain {
 		start = new Date();
 		ArrayList<GepKExpression> expr = new ArrayList<GepKExpression>();
 		for(int i=0; i<10000; i++) {
-			expr.add(randomInit(30));
+			expr.add(randomInit(SIZE_OF_EXPRESSIONS));
 		}
 		now = new Date();
 		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
@@ -52,17 +53,38 @@ public class GepMain {
 		now = new Date();
 		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
 		
-		System.out.println("4. Evaluation of the population");
+		System.out.println("4. Evaluation of the initial population");
 		start = new Date();
 			pop.evaluate();
 		now = new Date();
 		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
 		
-		System.out.println("5. Displaying of the best part of the population");
+		System.out.println("5. Displaying of the best fitness");
 		start = new Date();
-			pop.display();
+			pop.displayBest();
 		now = new Date();
 		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
+		
+		System.out.println("6. Crossing the expressions");
+		start = new Date();
+		GepPopulationUtils popUtils = new GepPopulationUtils(pop);
+		popUtils.cross(3000);
+		
+		pop = popUtils.getCrossedPopulation();
+		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
+		
+		System.out.println("7. Evaluate the new crossed population");
+		start = new Date();
+			pop.evaluate();
+		now = new Date();
+		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
+		
+		System.out.println("8. Displaying of the best part of the new crossed population");
+		start = new Date();
+			pop.displayBest();
+		now = new Date();
+		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
+		
 	}
 	
 	/**
@@ -112,15 +134,12 @@ public class GepMain {
 	private static GepKExpression randomInit(int size) {
 		
 		GepKExpression expr = new GepKExpression(size);
-		
-		int tail = expr.getSize() -(expr.getHead());
-		
 					
 		for(int i = 0; i < expr.getHead(); i++) {
 			expr.add(randomOp());
 		}
 		
-		for(int i = 0; i < tail; i++) {
+		for(int i = 0; i < expr.getTail(); i++) {
 			expr.add(randomTerm());			
 		}
 		

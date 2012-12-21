@@ -14,4 +14,9 @@ public class GPOperatorAdd extends GPBinaryOperator {
 		System.out.println("Error: add must have two arguments");
 		return 0;
 	}
+
+	@Override
+	public boolean isVariable() {
+		return false;
+	}
 }

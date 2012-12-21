@@ -14,4 +14,9 @@ public class GPOperatorSub extends GPBinaryOperator {
 		System.out.println("Error: minus must have two arguments");
 		return 0;
 	}
+	
+	@Override
+	public boolean isVariable() {
+		return false;
+	}
 }

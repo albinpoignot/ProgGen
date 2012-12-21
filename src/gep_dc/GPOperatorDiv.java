@@ -22,4 +22,9 @@ public class GPOperatorDiv extends GPBinaryOperator implements GPOperator {
 		System.out.println("Error: div must have two arguments");
 		return 0;
 	}
+	
+	@Override
+	public boolean isVariable() {
+		return false;
+	}
 }

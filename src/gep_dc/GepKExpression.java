@@ -17,10 +17,15 @@ public class GepKExpression {
 	
 	public GepKExpression(int size) {
 		kExpression = new ArrayList<GPObject>();
-		this.size = size;
+		//this.size = size;
 		//on choisit n=2, cas des operateurs binaires
 		this.head = (size-1)/2;
-		this.tail= size-this.head;	
+		this.tail= (int) ((size-this.head)*1.50);
+		this.size = head + tail;
+	}
+	
+	public GPObject get(int index) {
+		return kExpression.get(index);
 	}
 	
 	//Permet de supprimer les objets de la kExpression à partir de l'indice i
@@ -43,7 +48,7 @@ public class GepKExpression {
 		while ( !(reserve.isEmpty()) ) {
 		
 			//recupérer le premier élément de la reserve
-			GepExpressionNode current= reserve.remove(0);
+			GepExpressionNode current = reserve.remove(0);
 			
 			//affecter l'objet de l'expression
 			GPObject element = itr.next();
@@ -80,6 +85,10 @@ public class GepKExpression {
 	
 	public int getHead() {
 		return this.head;
+	}
+	
+	public int getTail() {
+		return this.tail;
 	}
 	
 	public int getSize(){

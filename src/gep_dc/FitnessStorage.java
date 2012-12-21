@@ -33,6 +33,16 @@ public class FitnessStorage {
 	private Double maximum;
 	
 	/**
+	 * Expression avec la fitness minimum
+	 */
+	private GepKExpression expMinimum;
+	
+	/**
+	 * Fitness minimum
+	 */
+	private Double fitMinimum;
+	
+	/**
 	 * Taille maximum des listes
 	 */
 	private int maxSize;
@@ -46,6 +56,7 @@ public class FitnessStorage {
 		fitnesses = new ArrayList<Double>();
 		maximum = 0.0;
 		maxSize = size;
+		fitMinimum = Double.MAX_VALUE;
 	}
 	
 	/**
@@ -82,6 +93,11 @@ public class FitnessStorage {
 			if(value > maximum) {
 				maximum = value;
 			}
+			
+			if(value < fitMinimum) {
+				fitMinimum = value;
+				expMinimum = expression;
+			}
 			return true;
 		} else {
 			// Sinon, on vérifie que la valeur est inférieure
@@ -103,11 +119,32 @@ public class FitnessStorage {
 				// Mise à jour du maximum
 				maximum = Collections.max(fitnesses);
 				
+				if(value < fitMinimum) {
+					fitMinimum = value;
+					expMinimum = expression;
+				}
+				
 				return true;
 			}
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * Retourne la fitness minimum
+	 * @return
+	 */
+	public Double getFitnessMinimum() {
+		return fitMinimum;
+	}
+	
+	/**
+	 * Retourne l'expression avec la fitness minimum
+	 * @return
+	 */
+	public GepKExpression getExpMinimum() {
+		return expMinimum;
 	}
 	
 	/**
@@ -129,6 +166,14 @@ public class FitnessStorage {
 				System.out.println("\tFitness : " + fitness);
 			}
 		}
+	}
+	
+	public ArrayList<GepKExpression> getExpressions() {
+		return expressions;
+	}
+	
+	public ArrayList<Double> getFitnesses() {
+		return fitnesses;
 	}
 	
 }

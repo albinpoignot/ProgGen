@@ -15,4 +15,9 @@ public class GPOperatorNeg extends GPUnaryOperator implements GPOperator {
 		return 0;
 	}
 	
+	@Override
+	public boolean isVariable() {
+		return false;
+	}
+	
 }

@@ -24,7 +24,7 @@ public class GepPopulation {
 	 */
 	public void evaluate() {
 		
-		// Calcule de la taille des 20%
+		// Calcul de la taille des 20%
 		int twentyPercent = (int)(population.size() * 0.20);
 		
 		// Init the final storage
@@ -58,6 +58,10 @@ public class GepPopulation {
 		}
 	}
 	
+	public void permuter() {
+		
+	}
+	
 	/**
 	 * Display function
 	 */
@@ -78,23 +82,22 @@ public class GepPopulation {
 		finalFitnesses.display();
 	}
 	
-	/**
-	 * Remove all expression in HashMap which have fitness NaN or Infinity
-	 */
-	/*public void clear() {
-		
-		Set<GepKExpression> keySet = fitness.keySet();
-		
-		Iterator<GepKExpression> itr = keySet.iterator(); 
-		while(itr.hasNext()) {
-
-		    GepKExpression element = (GepKExpression) itr.next(); 
-		    if(fitness.get(element).isNaN() || fitness.get(element).isInfinite()) {
-		    	itr.remove();
-		    	population.remove(element);
-		    }
-
-		}
-	}*/
+	public void displayBest() {
+		System.out.println("=== Display best element ===");
+		System.out.println("\tExpression : " + finalFitnesses.getExpMinimum().toString());
+		System.out.println("\tFitness : " + finalFitnesses.getFitnessMinimum());
+	}
+	
+	public FitnessStorage getFitnessStorage() {
+		return finalFitnesses;
+	}
+	
+	public int getSize() {
+		return finalFitnesses.size();
+	}
+	
+	public GepKExpression getExpression(int index) {
+		return finalFitnesses.getExpressions().get(index);
+	}
 	
 }
