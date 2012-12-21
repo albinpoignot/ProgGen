@@ -1,6 +1,7 @@
 package gep_dc;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 public class GepMain {
@@ -28,18 +29,40 @@ public class GepMain {
 
 		System.out.println("GEP_DC: Gene Expression Programming for Dielectric Constant symbolic regression");
 		
-		initVars();
+		Date start = new Date();
 		
+		System.out.println("1. Initialization of variables");
+		initVars();
+		Date now = new Date();
+		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
+		
+		System.out.println("2. Initialization of random expressions");
+		start = new Date();
 		ArrayList<GepKExpression> expr = new ArrayList<GepKExpression>();
-		for(int i=0; i<1000; i++) {
+		for(int i=0; i<10000; i++) {
 			expr.add(randomInit(30));
 		}
+		now = new Date();
+		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
 		
-		GepPopulation pop = new GepPopulation(expr);
-		pop.evaluate();
-		pop.display();
-		pop.clear();
-		pop.display();
+		
+		System.out.println("3. Initialization of the population");
+		start = new Date();
+			GepPopulation pop = new GepPopulation(expr);
+		now = new Date();
+		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
+		
+		System.out.println("4. Evaluation of the population");
+		start = new Date();
+			pop.evaluate();
+		now = new Date();
+		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
+		
+		System.out.println("5. Displaying of the best part of the population");
+		start = new Date();
+			pop.display();
+		now = new Date();
+		System.out.println("("+ ((double)(now.getTime() - start.getTime())/1000) +")");
 	}
 	
 	/**
